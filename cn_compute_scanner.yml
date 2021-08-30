@@ -2,10 +2,11 @@
 
 - hosts: compute_vrouter,compute_vrouter-2,compute_mv_vrouter,compute_vepc,compute_vims,compute_vbng
   gather_facts: True
+  strategy: free
   vars:
    - log_dir: "/tmp"
    - postfix: "contrail_snapshot.txt"
-   - log_file: "{{log_dir}}/{{ansible_hostname}}-{{postfix}}"
+   - log_file: "{{ansible_hostname}}-{{postfix}}"
 
   tasks:
     - name: Creates directory
@@ -36,6 +37,6 @@
 
     - name: Specifying a path directly
       fetch:
-       src: "{{log_file}}"
-       dest: /home/stack/juniper_workspace/contrail_compute_scan-{{ cur_time }}
+       src: "{{log_dir}}/{{log_file}}"
+       dest: /home/stack/juniper_workspace/contrail_compute_scan-{{ cur_time }}/{{ log_file }}
        flat: yes
