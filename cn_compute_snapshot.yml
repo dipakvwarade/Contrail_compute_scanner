@@ -1,6 +1,7 @@
 ---
 
-- hosts: compute_vrouter
+- hosts: compute_vrouter,compute_vrouter-2,compute_mv_vrouter,compute_vepc,compute_vims,compute_vbng
+  gather_facts: True
   vars:
    - log_dir: "/tmp"
    - postfix: "contrail_snapshot.txt"
@@ -23,18 +24,8 @@
     - name: Set variables
       set_fact:
        cur_date: "{{ tstamp.stdout[0:10]}}"
-       cur_time: "{{ tstamp.stdout[10:]}}"
+       cur_time: "{{ tstamp.stdout}}"
 
-#   - name: Create directory for ansible custom facts
-#     ansible.builtin.file:
-#       state: directory
-#       recurse: yes
-#       path: /etc/ansible/facts.d
-
-#   - name: Install custom cn_snapshot fact
-#     ansible.builtin.copy:
-#       src: contrail_compute_snapshot.fact
-#       dest: /etc/ansible/facts.d
 
     - name: Install custom cn_snapshot fact
       copy:
@@ -43,19 +34,8 @@
        mode: 0755
 
 
-#   - name: Re-read facts after adding custom fact
-#     ansible.builtin.setup:
-#       filter: ansible_local
-
-#     - name: Re-read facts after adding custom fact
-#       debug:
-#         msg: Kernel MPLS {{ansible_local}}
-
-#     - name: write fact
-#       copy: content="{{ ansible_local }}" dest="{{ log_file }}"
-#       delegate_to: localhost
-    
-    - name: Fetch the dump to director in /tmp
-      fetch: src={{log_file}} dest=/tmp/contrail_compute_scan_{{cur_time}}
-      #remote_src: True
-      #delegate_to: localhost
+    - name: Specifying a path directly
+      fetch:
+       src: "{{log_file}}"
+       dest: /home/stack/juniper_workspace/contrail_compute_scan-{{ cur_time }}
+       flat: yes
