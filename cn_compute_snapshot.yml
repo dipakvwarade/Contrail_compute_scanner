@@ -1,0 +1,61 @@
+---
+
+- hosts: compute_vrouter
+  vars:
+   - log_dir: "/tmp"
+   - postfix: "contrail_snapshot.txt"
+   - log_file: "{{log_dir}}/{{ansible_hostname}}-{{postfix}}"
+
+  tasks:
+    - name: Creates directory
+      file:
+        path: /etc/ansible/facts.d/
+        state: directory
+        owner: heat-admin
+        group: heat-admin
+        mode: 0775
+
+    - name: Get timestamp from the system
+      shell: "date +%Y-%m-%d%H-%M"
+      register: tstamp
+      delegate_to: localhost
+
+    - name: Set variables
+      set_fact:
+       cur_date: "{{ tstamp.stdout[0:10]}}"
+       cur_time: "{{ tstamp.stdout[10:]}}"
+
+#   - name: Create directory for ansible custom facts
+#     ansible.builtin.file:
+#       state: directory
+#       recurse: yes
+#       path: /etc/ansible/facts.d
+
+#   - name: Install custom cn_snapshot fact
+#     ansible.builtin.copy:
+#       src: contrail_compute_snapshot.fact
+#       dest: /etc/ansible/facts.d
+
+    - name: Install custom cn_snapshot fact
+      copy:
+       src: contrail_compute_snapshot.fact
+       dest: /etc/ansible/facts.d/contrail_compute_snapshot.fact
+       mode: 0755
+
+
+#   - name: Re-read facts after adding custom fact
+#     ansible.builtin.setup:
+#       filter: ansible_local
+
+#     - name: Re-read facts after adding custom fact
+#       debug:
+#         msg: Kernel MPLS {{ansible_local}}
+
+#     - name: write fact
+#       copy: content="{{ ansible_local }}" dest="{{ log_file }}"
+#       delegate_to: localhost
+    
+    - name: Fetch the dump to director in /tmp
+      fetch: src={{log_file}} dest=/tmp/contrail_compute_scan_{{cur_time}}
+      #remote_src: True
+      #delegate_to: localhost
