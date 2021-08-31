@@ -23,6 +23,7 @@ cd Contrail_compute_scanner
 - How to improve speed?
 - SRIOV node scanning - cover all aspect of sriov compute
 - DPDK node scanning - cover all aspect of dpdk compute
+- Cover Fabric nodes - vlan tagging, MTU etc
 
 
 
