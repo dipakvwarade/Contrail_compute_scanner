@@ -13,7 +13,7 @@ cd Contrail_compute_scanner
 
 ```
 
-# Whats covered for now
+# Whats covered for now?
 - Mainly Contrail related configuration and operational states like routing table, vrfs, mpls, vxlan etc
 - I'll be adding a support to cover SRIOV and DPDK config and operation status
 
