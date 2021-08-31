@@ -1,6 +1,6 @@
 # Contrail Compute Scanner
 
-CCS use a simple custom fact written in python to fetch the configuration and operational states from compute in JSON format.
+CCS use a simple custom fact written in python to fetch the configuration and operational states from computes in JSON format.
 Since the script is written in python its very easy to expand to cover other use cases.
 
 
