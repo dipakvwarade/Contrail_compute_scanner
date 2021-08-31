@@ -35,7 +35,7 @@
        mode: 0755
 
 
-    - name: Specifying a path directly
+    - name: Getting the stone soup on table
       fetch:
        src: "{{log_dir}}/{{log_file}}"
        dest: /home/stack/juniper_workspace/contrail_compute_scan-{{ cur_time }}/{{ log_file }}
