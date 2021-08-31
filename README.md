@@ -1,6 +1,6 @@
 # Contrail Computer Scanner
 
-CCS use a simple custom fact written in python to fetch the configuration and operation states from compute in JSON format.
+CCS use a simple custom fact written in python to fetch the configuration and operational states from compute in JSON format.
 Since the script is written in python its very easy to expand to cover other use cases.
 
 
@@ -9,7 +9,7 @@ Since the script is written in python its very easy to expand to cover other use
 ```
 git clone git@github.com:dipakvwarade/Contrail_compute_scanner.git
 cd Contrail_compute_scanner
-[stack@rhosp]$ ANSIBLE_TIMEOUT=5000;ansible-playbook -i inventory cn_compute_snapshot.yml
+[stack@rhosp]$ ANSIBLE_TIMEOUT=5000;ansible-playbook -i inventory cn_compute_scanner.yml
 
 ```
 
