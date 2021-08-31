@@ -17,6 +17,12 @@ cd Contrail_compute_scanner
 - Mainly Contrail related configuration and operational states like routing table, vrfs, mpls, vxlan etc
 - I'll be adding a support to cover SRIOV and DPDK config and operation status
 
+# Improvements planned
+- Have an option to dump each command seperately
+- Dynamic inventories to cover newly deployed nodes
+- How to improve speed?
+- SRIOV node scanning - cover all aspect of sriov compute
+- DPDK node scanning - cover all aspect of dpdk compute
 
 
 
