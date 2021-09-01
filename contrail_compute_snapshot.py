@@ -24,6 +24,24 @@ def tell_me_your_name_compute():
   #print("\nINFO: Contrail Compute Snapshot : Working on node {}".format(node_name))
   return node_name 
 
+def sriov_compute():
+      # VF 
+      # PF 
+      # VLAN tagging
+      # trust mode
+      # physnet mapping
+      # LLDP for physical interface mapping
+      pass
+
+def dpdk_compute():
+      # dpdk optimization
+      # Vrouter optimization
+      pass
+
+def leaf_switches():
+      # LLDP mapping
+      # VLAN tagging verification
+      pass
 
 if __name__ == '__main__':
   node_name = tell_me_your_name_compute()
