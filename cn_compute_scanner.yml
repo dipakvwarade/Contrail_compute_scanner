@@ -9,7 +9,7 @@
    - log_file: "{{ansible_hostname}}-{{postfix}}"
 
   tasks:
-    - name: Creates directory
+    - name: Arrange for intial setup i.e directory on compute
       file:
         path: /etc/ansible/facts.d/
         state: directory
@@ -22,13 +22,13 @@
       register: tstamp
       delegate_to: localhost
 
-    - name: Set variables
+    - name: Set date variables
       set_fact:
        cur_date: "{{ tstamp.stdout[0:10]}}"
        cur_time: "{{ tstamp.stdout}}"
 
 
-    - name: Install custom cn_snapshot fact
+    - name: Adding a magic stone to the pot
       copy:
        src: contrail_compute_snapshot.fact
        dest: /etc/ansible/facts.d/contrail_compute_snapshot.fact
